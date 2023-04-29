@@ -1,48 +1,34 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1.Install create-react-app globally : npm install -g create-react-app
 
-## Available Scripts
+2.Create a new React project with TypeScript: npx create-react-app wine-data-echart --template typescript
 
-In the project directory, you can run:
+3.Navigate into the project directory: cd wine-data-echart
 
-### `npm start`
+4.Remove the existing code and files: Delete the contents of src folder except for index.tsx and react-app-env.d.ts files.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Next, let's install the required dependencies:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Install ECharts for React: yarn add echarts-for-react
 
-### `npm test`
+## Now, let's implement the line chart and bar chart
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Line Chart to be drawn between “Flavanoids” on the horizontal axis and “Ash” on the vertical axis. 
 
-### `npm run build`
+Bar chart to be drawn showing the “Alcohol” categories on the horizontal axis and the minimum “Magnesium” value for each alcohol category on the vertical axis.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## In the project directory, you can run: yarn start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Finally, run yarn start to start the development server. The browser should open with the line chart and bar chart rendered.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Output Screenshots 
 
-### `npm run eject`
+## Line Chart
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Line Chart](https://github.com/Omkar-royal/Wine-Data-Echart/blob/master/Screenshot%20(318).png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Bar Chart
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
+![Bar Chart](https://github.com/Omkar-royal/Wine-Data-Echart/blob/master/Screenshot%20(319).png)
 
