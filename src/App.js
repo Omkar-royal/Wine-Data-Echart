@@ -1,0 +1,182 @@
+
+/*import WineBarChart from './WineBarChart';
+import React from 'react';
+
+const App = () => {
+  return (
+    <div>
+      <h1>Wine Bar Chart</h1>
+      <WineBarChart />
+    </div>
+  );
+};
+
+export default App;
+
+import React, { useEffect } from 'react';
+import ReactECharts from 'echarts-for-react';
+import data from './Wine-Data.json';
+import WineBarChart from './WineBarChart';
+const wineData = data.wineData;
+
+const lineChartOptions = {
+  xAxis: {
+    type: 'value',
+    name: 'Flavanoids'
+  },
+  yAxis: {
+    type: 'value',
+    name: 'Ash'
+  },
+  series: [{
+    type: 'line',
+    data: wineData.map(d => [d.Flavanoids, d.Ash])
+  }]
+};
+const magnesiumSum = wineData.reduce((sum, wineData) => sum + wineData.Magnesium, 0);
+  const magnesiumAverage = magnesiumSum / wineData.length;
+
+  // Extract the "Alcohol" values
+  const alcoholValues = wineData.map(data => data.Alcohol);
+
+const barChartOptions = {
+  xAxis: {
+    type: 'category',
+    name: 'Alcohol',
+    data: wineData.map(d => d.Alcohol)
+  },
+  yAxis: {
+    type: 'value',
+    name: 'Magnesium'
+  },
+  series: [{
+    type: 'bar',
+    data: wineData.map(d => d.Magnesium)
+  }]
+};
+/*const barChartOptionss = {
+  xAxis: {
+    type: 'category',
+    name: 'Alcohol',
+    data: alcoholValues
+  },
+  yAxis: {
+    type: 'value',
+    name: 'Magnesium'
+  },
+  series: [{
+    type: 'bar',
+    data: magnesiumAverage
+  }]
+};*/
+/*
+function App() {
+  useEffect(() => {
+    document.title = 'ECharts';
+  }, []);
+
+  return (
+    <div>
+      <h1>Line Chart</h1>
+      <div className="chart-container">
+        <ReactECharts option={lineChartOptions} style={{ height: '400px' }} />
+      </div>
+
+      <h1>Bar Chart</h1>
+      <div className="chart-container">
+        <ReactECharts option={barChartOptions} style={{ height: '400px' }} />
+      </div>
+      <h1>Bar Chart</h1>
+      <div className="chart-container">
+        <ReactECharts option={barChartOptions} style={{ height: '400px' }} />
+      </div>
+      
+  
+    </div>
+  );
+}
+
+export default App;*/
+import React from 'react';
+import ReactECharts from 'echarts-for-react';
+import data from './Wine-Data.json';
+const WineBarChart = () => {
+  const wineData =data.wineData;
+
+  // Calculate the average "Magnesium" value for each unique "Alcohol" category
+  const averageMagnesiumValues ={} ;
+  wineData.forEach(data => {
+    const alcohol = data.Alcohol;
+    const magnesium = data.Magnesium;
+    if (!averageMagnesiumValues[alcohol]) {
+      averageMagnesiumValues[alcohol] = {
+        total: magnesium,
+        count: 1,
+      };
+    } else {
+      averageMagnesiumValues[alcohol].total += magnesium;
+      averageMagnesiumValues[alcohol].count++;
+    }
+  });
+
+  // Calculate the average "Magnesium" values
+  const averages = Object.keys(averageMagnesiumValues).map(alcohol => ({
+    alcohol,
+    average: averageMagnesiumValues[alcohol].total / averageMagnesiumValues[alcohol].count,
+  }));
+
+  // Sort the averages by the "Alcohol" value
+  averages.sort((a, b) => a.alcohol - b.alcohol);
+
+  // Extract the "Alcohol" values and the average "Magnesium" values
+  const alcoholValues = averages.map(entry => entry.alcohol);
+  const averageMagnesium = averages.map(entry => entry.average);
+  const lineChartOptions = {
+    xAxis: {
+      type: 'value',
+      name: 'Flavanoids'
+    },
+    yAxis: {
+      type: 'value',
+      name: 'Ash'
+    },
+    series: [{
+      type: 'line',
+      data: wineData.map(d => [d.Flavanoids, d.Ash])
+    }]
+  };
+  return (
+    <div>
+      <h2>Wine Data Bar Chart</h2>
+      <ReactECharts
+        option={{
+          xAxis: {
+            type: 'category',
+            data: alcoholValues.map(alcohol => `Alcohol ${alcohol}`),
+            name: 'Alcohol',
+          },
+          yAxis: {
+            type: 'value',
+            name: 'Average Magnesium',
+          },
+          series: [
+            {
+              type: 'bar',
+              data: averageMagnesium,
+              label: {
+                show: true,
+                position: 'top',
+              },
+            },
+          ],
+        }}
+        style={{ height: '400px' }}
+      />
+      <h1>Line Chart</h1>
+      <div className="chart-container">
+        <ReactECharts option={lineChartOptions} style={{ height: '400px' }} />
+      </div>
+    </div>
+  );
+      }
+      export default WineBarChart;
