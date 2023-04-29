@@ -26,9 +26,9 @@ Finally, run yarn start to start the development server. The browser should open
 
 ## Line Chart
 
-![Line Chart](https://github.com/Omkar-royal/Wine-Data-Echart/blob/master/Screenshot%20(320).png)
+![Line Chart](https://github.com/Omkar-royal/Wine-Data-Echart/blob/master/src/Screenshot%20(320).png)
 
 ## Bar Chart
 
-![Bar Chart](https://github.com/Omkar-royal/Wine-Data-Echart/blob/master/Screenshot%20(321).png)
+![Bar Chart](https://github.com/Omkar-royal/Wine-Data-Echart/blob/master/src/Screenshot%20(321).png)
 
