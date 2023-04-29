@@ -1,24 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import ReactECharts from 'echarts-for-react';
+import data from './Wine-Data.json';
+const wineData = data.wineData;
+
+const lineChartOptions = {
+  xAxis: {
+    type: 'value',
+    name: 'Flavanoids'
+  },
+  yAxis: {
+    type: 'value',
+    name: 'Ash'
+  },
+  series: [{
+    type: 'line',
+    data: wineData.map(d => [d.Flavanoids, d.Ash])
+  }]
+};
+
+const barChartOptions = {
+  xAxis: {
+    type: 'category',
+    name: 'Alcohol',
+    data: wineData.map(d => d.Alcohol)
+  },
+  yAxis: {
+    type: 'value',
+    name: 'Magnesium'
+  },
+  series: [{
+    type: 'bar',
+    data: wineData.map(d => d.Magnesium)
+  }]
+};
 
 function App() {
+  useEffect(() => {
+    document.title = 'ECharts Demo';
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Line Chart</h1>
+      <div className="chart-container">
+        <ReactECharts option={lineChartOptions} style={{ height: '400px' }} />
+      </div>
+
+      <h1>Bar Chart</h1>
+      <div className="chart-container">
+        <ReactECharts option={barChartOptions} style={{ height: '400px' }} />
+      </div>
+      
+  
     </div>
   );
 }
